@@ -1,0 +1,25 @@
+name: 'steam-workshop-upload'
+description: 'Upload your mod to the Steam Workshop with the power of GitHub Actions — now with Steam Guard 2FA support'
+
+branding:
+  icon: upload-cloud
+  color: purple
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
+inputs:
+  appid:
+    description: 'Steam App ID'
+    required: true
+  itemid:
+    description: 'Workshop Item ID'
+    required: true
+  path:
+    description: 'Path of folder to upload'
+    required: true
+  changenote:
+    description: 'Changenote of this update'
+    required: false
+    default: 'Upload triggered by GitHub Actions workflow.'
