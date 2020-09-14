@@ -2,7 +2,7 @@ const process = require('process')
 const fs = require('fs')
 const child_process = require('child_process')
 
-const REQUIRED_ENV = ['STEAM_USERNAME', 'STEAM_PASSWORD', 'INPUT_APPID', 'INPUT_FILEID', 'INPUT_PATH',]
+const REQUIRED_ENV = ['STEAM_USERNAME', 'STEAM_PASSWORD', 'INPUT_APPID', 'INPUT_ITEMID', 'INPUT_PATH',]
 
 for (const env in REQUIRED_ENV) {
     if (!process.env[REQUIRED_ENV[env]]) {
@@ -15,7 +15,7 @@ const WORKSHOPVDF = `
 "workshopitem"
 {
     "appid" "${process.env.INPUT_APPID}"
-    "publishedfileid" "${process.env.INPUT_FILEID}"
+    "publishedfileid" "${process.env.INPUT_ITEMID}"
     "contentfolder"    "${process.env.repo}/${process.env.INPUT_PATH}"
     "changenote" "${process.env.INPUT_CHANGENOTE}"
 }
