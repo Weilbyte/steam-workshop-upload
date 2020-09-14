@@ -2,7 +2,7 @@ const process = require('process')
 const fs = require('fs')
 const child_process = require('child_process')
 
-const REQUIRED_ENV = ['STEAM_USERNAME', 'STEAM_PASSWORD', 'appid', 'fileid', 'path',]
+const REQUIRED_ENV = ['STEAM_USERNAME', 'STEAM_PASSWORD', 'INPUT_APPID', 'INPUT_FILEID', 'INPUT_PATH',]
 
 for (const env in REQUIRED_ENV) {
     if (!process.env[REQUIRED_ENV[env]]) {
@@ -14,10 +14,10 @@ for (const env in REQUIRED_ENV) {
 const WORKSHOPVDF = `
 "workshopitem"
 {
-    "appid" "${process.env.appid}"
-    "publishedfileid" "${process.env.fileid}"
-    "contentfolder"    "${process.env.repo}/${process.env.path}"
-    "changenote" "${process.env.changenote}"
+    "appid" "${process.env.INPUT_APPID}"
+    "publishedfileid" "${process.env.INPUT_FILEID}"
+    "contentfolder"    "${process.env.repo}/${process.env.INPUT_PATH}"
+    "changenote" "${process.env.INPUT_CHANGENOTE}"
 }
 `
 
@@ -29,7 +29,7 @@ if (process.env.STEAM_TFASEED) {
         stdio: 'inherit'
     })
 } else {
-    child_process.spawn('/home/steam/steamcmd.sh', [`+login ${process.env.STEAM_USERNAME} ${process.env.STEAM_PASSWORD}+workshop_build_item /home/steam/workshop.vdf +quit`],
+    child_process.spawn('/home/steam/steamcmd.sh', [`+login ${process.env.STEAM_USERNAME} ${process.env.STEAM_PASSWORD} +workshop_build_item /home/steam/workshop.vdf +quit`],
     {
         stdio: 'inherit'
     })
