@@ -19,15 +19,15 @@ cat << EOF > /home/steam/workshop.vdf
 {
     "appid"            "${INPUT_APPID}"
     "publishedfileid"  "${INPUT_ITEMID}"
-    "contentfolder"    "${rep}/${INPUT_PATH}"
+    "contentfolder"    "${repo}/${INPUT_PATH}"
     "changenote"       "${INPUT_CHANGENOTE}"
 }
 EOF
 
 if [[ -z "${STEAM_TFASEED}" ]]; then
-  /home/steam/steamcmd +login ${STEAM_USERNAME} ${STEAM_PASSWORD} +workshop_build_item /home/steam/workshop.vdf +quit
+  /home/steam/steamcmd +@ShutdownOnFailedCommand 1 +login ${STEAM_USERNAME} ${STEAM_PASSWORD} +workshop_build_item /home/steam/workshop.vdf +quit
 else
-  /home/steam/steamcmd-2fa -username ${STEAM_USERNAME} -password ${STEAM_PASSWORD} -seed ${STEAM_TFASEED} -args "+workshop_build_item /home/steam/workshop.vdf +quit"
+  /home/steam/steamcmd-2fa -username ${STEAM_USERNAME} -password ${STEAM_PASSWORD} -seed ${STEAM_TFASEED} -args "+@ShutdownOnFailedCommand 1 +workshop_build_item /home/steam/workshop.vdf +quit"
 fi
 
 [ $? -eq 0 ] && exit 0 || (
