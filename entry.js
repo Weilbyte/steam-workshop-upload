@@ -24,20 +24,23 @@ const WORKSHOPVDF = `
 fs.writeFileSync('/home/steam/workshop.vdf', WORKSHOPVDF)
 
 if (process.env.STEAM_TFASEED) {
-    let args = `-username ${process.env.STEAM_USERNAME} -password ${process.env.STEAM_PASSWORD} -seed ${process.env.STEAM_TFASEED} -args "+workshop_build_item /home/steam/workshop.vdf +quit"`
+    let args = `-path /home/steam/steamcmd -username ${process.env.STEAM_USERNAME} -password ${process.env.STEAM_PASSWORD} -seed ${process.env.STEAM_TFASEED} -args "+workshop_build_item /home/steam/workshop.vdf +quit"`
     child_process.spawn('/home/steam/steamcmd-2fa', args.split(" "),
     {
         stdio: 'inherit',
-        timeout: 150000,
+        timeout: 60000,
         shell: true
     })
 } else {
     let args = `+login ${process.env.STEAM_USERNAME} ${process.env.STEAM_PASSWORD} +workshop_build_item /home/steam/workshop.vdf +quit`
-    child_process.spawn('/home/steam/steamcmd/steamcmd.sh', args.split(" "),
+    child_process.spawn('/home/steam/steamcmd', args.split(" "),
     {
         stdio: 'inherit',
-        timeout: 150000,
+        timeout: 60000,
         shell: true
     })
 }
+
+const stdErr = fs.readFileSync("/home/steam/Steam/logs/stderr.txt")
+console.log("STDERR: ", stdErr)
 
