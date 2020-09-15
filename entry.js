@@ -27,13 +27,17 @@ if (process.env.STEAM_TFASEED) {
     let args = `-username ${process.env.STEAM_USERNAME} -password ${process.env.STEAM_PASSWORD} -seed ${process.env.STEAM_TFASEED} -args "+workshop_build_item /home/steam/workshop.vdf +quit"`
     child_process.spawn('/home/steam/steamcmd-2fa', args.split(" "),
     {
-        stdio: 'inherit'
+        stdio: 'inherit',
+        timeout: 150000,
+        shell: true
     })
 } else {
     let args = `+login ${process.env.STEAM_USERNAME} ${process.env.STEAM_PASSWORD} +workshop_build_item /home/steam/workshop.vdf +quit`
     child_process.spawn('/home/steam/steamcmd/steamcmd.sh', args.split(" "),
     {
-        stdio: 'inherit'
+        stdio: 'inherit',
+        timeout: 150000,
+        shell: true
     })
 }
 
