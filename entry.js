@@ -41,6 +41,6 @@ if (process.env.STEAM_TFASEED) {
     })
 }
 
-const stdErr = fs.readFileSync("/home/steam/Steam/logs/stderr.txt")
-console.log("STDERR: ", stdErr)
+const stdErr = fs.readFileSync('/home/steam/Steam/logs/stderr.txt', 'utf8')
+console.log('STDERR: ', stdErr)
 
