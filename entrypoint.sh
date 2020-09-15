@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [[ -z "${STEAM_USERNAME}" ]]; then
   echo "Environment variable STEAM_USERNAME is required but not provided."
   exit 1
