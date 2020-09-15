@@ -15,12 +15,13 @@ else
 fi
 
 cat << EOF > /workshop.vdf
-"workshopitem": {
-			"appid": ${INPUT_APPID},
-			"contentfolder": ${repo}/${INPUT_PATH},
-			"changenote": ${INPUT_CHANGENOTE},
-			"publishedfileid": ${INPUT_ITEMID}
-		}
+"workshopitem"
+{
+  "appid" "${INPUT_APPID}"
+  "contentfolder" "${repo}/${INPUT_PATH}"
+  "changenote" "${INPUT_CHANGENOTE}"
+  "publishedfileid" "${INPUT_ITEMID}"
+}
 EOF
 
 echo "$(cat /workshop.vdf)"
