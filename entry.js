@@ -29,7 +29,7 @@ if (process.env.STEAM_TFASEED) {
         stdio: 'inherit'
     })
 } else {
-    child_process.spawn('/home/steam/steamcmd.sh', [`+login ${process.env.STEAM_USERNAME} ${process.env.STEAM_PASSWORD} +workshop_build_item /home/steam/workshop.vdf +quit`],
+    child_process.spawn('/home/steam/steamcmd', [`+login ${process.env.STEAM_USERNAME} ${process.env.STEAM_PASSWORD} +workshop_build_item /home/steam/workshop.vdf +quit`],
     {
         stdio: 'inherit'
     })
