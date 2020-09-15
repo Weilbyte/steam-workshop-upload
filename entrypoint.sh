@@ -23,9 +23,9 @@ cat << EOF > /home/steam/workshop.vdf
 EOF
 
 if [[ -z "${STEAM_TFASEED}" ]]; then
-  /home/steam/steamcmd-2fa -username ${STEAM_USERNAME} -password ${STEAM_PASSWORD} -seed ${STEAM_TFASEED} -args "+workshop_build_item /home/steam/workshop.vdf +quit"
+  /home/steam/steamcmd +login ${STEAM_USERNAME} ${STEAM_PASSWORD} +workshop_build_item /home/steam/workshop.vdf +quit
 else
-  /home/steam/steamcmd/steamcmd.sh +login ${STEAM_USERNAME} ${STEAM_PASSWORD} +workshop_build_item /home/steam/workshop.vdf +quit
+  /home/steam/steamcmd-2fa -username ${STEAM_USERNAME} -password ${STEAM_PASSWORD} -seed ${STEAM_TFASEED} -args "+workshop_build_item /home/steam/workshop.vdf +quit"
 fi
 
 [ $? -eq 0 ] && exit 0 || (
