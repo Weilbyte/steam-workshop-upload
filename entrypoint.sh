@@ -24,7 +24,7 @@ cat << EOF > /home/steam/workshop.vdf
 }
 EOF
 
-echo "$(cat /workshop.vdf)"
+echo "$(cat /home/steam/workshop.vdf)"
 
 if [[ -z "${STEAM_TFASEED}" ]]; then
   /home/steam/steamcmd/steamcmd.sh +@ShutdownOnFailedCommand 1 +login ${STEAM_USERNAME} ${STEAM_PASSWORD} +workshop_build_item /home/steam/workshop.vdf +quit
