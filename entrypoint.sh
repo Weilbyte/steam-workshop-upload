@@ -41,7 +41,7 @@ fi
     echo "$(cat /home/steam/Steam/logs/stderr.txt)"
     echo
     echo workshop_log
-    echo "$(cat /home/steam/Steam/logs/Workshop_log.txt)"
+    echo "$(cat /home/steam/Steam/logs/workshop_log.txt)"
 
     exit 1
 )
