@@ -1,5 +1,8 @@
 #!/bin/bash
 
+WD=$("pwd")
+echo "Work Dir ${WD}"
+
 if [[ -z "${STEAM_USERNAME}" ]]; then
   echo "Environment variable STEAM_USERNAME is required but not provided."
   exit 1
@@ -29,7 +32,12 @@ echo "$(cat /home/steam/workshop.vdf)"
 if [[ -z "${STEAM_TFASEED}" ]]; then
   /home/steam/steamcmd/steamcmd.sh +@ShutdownOnFailedCommand 1 +login ${STEAM_USERNAME} ${STEAM_PASSWORD} +workshop_build_item /home/steam/workshop.vdf +quit
 else
-  /home/steam/steamcmd/steamcmd.sh +@ShutdownOnFailedCommand 1 +login ${STEAM_USERNAME} ${STEAM_PASSWORD} ${STEAM_TFASEED} +workshop_build_item /home/steam/workshop.vdf +quit
+  cd /app/steam-guard-code
+  npm install 
+  cd ${GITHUB_WORKSPACE}
+  SGC="$(node /app/steam-guard-code)"
+  #echo "Login code generated: ${SGC}"
+  /home/steam/steamcmd/steamcmd.sh +@ShutdownOnFailedCommand 1 +login ${STEAM_USERNAME} ${STEAM_PASSWORD} ${SGC} +workshop_build_item /home/steam/workshop.vdf +quit
 fi
 
 [ $? -eq 0 ] && exit 0 || (

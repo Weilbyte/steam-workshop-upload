@@ -1,0 +1,11 @@
+{
+  "name": "steam-guard-code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "ZehMatt",
+  "license": "MIT",
+  "dependencies": {
+    "steam-totp": "^2.1.2"
+  }
+}

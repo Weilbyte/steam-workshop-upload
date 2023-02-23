@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "steam-guard-code": "file:steam-guard-code"
+  }
+}
