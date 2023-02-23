@@ -29,7 +29,7 @@ echo "$(cat /home/steam/workshop.vdf)"
 if [[ -z "${STEAM_TFASEED}" ]]; then
   /home/steam/steamcmd/steamcmd.sh +@ShutdownOnFailedCommand 1 +login ${STEAM_USERNAME} ${STEAM_PASSWORD} +workshop_build_item /home/steam/workshop.vdf +quit
 else
-  /home/steam/steamcmd-2fa --path /home/steam/steamcmd/steamcmd.sh --username ${STEAM_USERNAME} --password ${STEAM_PASSWORD} --secret ${STEAM_TFASEED} --args "+workshop_build_item /home/steam/workshop.vdf +quit"
+  /home/steam/steamcmd/steamcmd.sh +@ShutdownOnFailedCommand 1 +login ${STEAM_USERNAME} ${STEAM_PASSWORD} ${STEAM_TFASEED} +workshop_build_item /home/steam/workshop.vdf +quit
 fi
 
 [ $? -eq 0 ] && exit 0 || (
